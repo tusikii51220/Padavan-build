@@ -94,6 +94,16 @@ jobs:
         #格式如下：
         #sed -i '/自定义项/d' .config
         #echo "自定义项=y" >> .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_UVC/d' .config
+        echo "CONFIG_FIRMWARE_INCLUDE_UVC=y" >> .config  #Include UVC camera modules. ~0.2MB
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_QOS/d' .config
+        echo "CONFIG_FIRMWARE_INCLUDE_QOS=y" >> .config  #Include network QoS scheduling modules. ~0.2MB
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_OPENVPN/d' .config
+        echo "CONFIG_FIRMWARE_INCLUDE_OPENVPN=y" >> .config  #Include OpenVPN. IPv6 required. openssl ~1.2MB, openvpn ~0.4MB
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_TRANSMISSION/d' .config
+        echo "CONFIG_FIRMWARE_INCLUDE_TRANSMISSION=y" >> .config  #Include Transmission torrent. openssl ~1.2MB, transmission ~1.5MB
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_TRANSMISSION_WEB_CONTROL/d' .config
+        echo "CONFIG_FIRMWARE_INCLUDE_TRANSMISSION_WEB_CONTROL=y" >> .config  #Include Transmission-Web-Control (advanced WebUI). ~0.8MB
         #########################################################################################
         sudo ./clear_tree
         sudo ./build_firmware_modify $TNAME 0
